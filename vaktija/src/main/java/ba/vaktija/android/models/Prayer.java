@@ -481,7 +481,7 @@ public class Prayer implements Parcelable {
         boolean timeNormalized = App.prefs.getString(Prefs.DHUHR_TIME_COUNTING, "1").equals("1");
         boolean summerTime = isSummerTime();
 
-        if ((id == DHUHR || id == JUMA) && timeNormalized) {
+        if (id == DHUHR && timeNormalized || id == JUMA) {
             return summerTime ? (13 * 3600) : (12 * 3600);
         }
 
