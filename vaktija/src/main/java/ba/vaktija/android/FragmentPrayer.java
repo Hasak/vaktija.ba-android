@@ -218,9 +218,10 @@ public class FragmentPrayer extends Fragment {
         boolean current = mPrayer.getId() == PrayersSchedule.getInstance(mApp).getCurrentPrayer().getId();
 
         mPrayerTitle.setText(
-                isNext
-                        ? mPrayer.getShortTitle().toUpperCase(Locale.getDefault())
-                        : mPrayer.getTitle().toUpperCase(Locale.getDefault())
+//                isNext
+//                        ? mPrayer.getShortTitle().toUpperCase(Locale.getDefault())
+//                        : mPrayer.getTitle().toUpperCase(Locale.getDefault())
+                mPrayer.getTitle().toUpperCase(Locale.getDefault())
         );
 
         mTimeText.setText(mPrayer.getHrsString() + ":" + mPrayer.getMinsString());

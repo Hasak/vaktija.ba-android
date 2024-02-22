@@ -111,6 +111,9 @@ public class SettingsFragment extends PreferenceFragmentCompat
         Preference currentVakatInNotif = getPreference(Prefs.CURRENT_VAKAT_IN_NOTIF);
         currentVakatInNotif.setOnPreferenceChangeListener(this);
 
+        Preference shortVakatInNotif = getPreference(Prefs.SHORT_VAKAT_IN_NOTIF);
+        shortVakatInNotif.setOnPreferenceChangeListener(this);
+
         notificationTonePreference = getPreference(Prefs.NOTIF_TONE_URI);
         notificationTonePreference.setOnPreferenceClickListener(this);
 
@@ -311,6 +314,15 @@ public class SettingsFragment extends PreferenceFragmentCompat
         }
 
         if (preference.getKey().equals(Prefs.CURRENT_VAKAT_IN_NOTIF)) {
+            getListView().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    NotifManagerFactory.getNotifManager(requireContext()).updateNotification();
+                }
+            }, 500);
+        }
+
+        if (preference.getKey().equals(Prefs.SHORT_VAKAT_IN_NOTIF)) {
             getListView().postDelayed(new Runnable() {
                 @Override
                 public void run() {

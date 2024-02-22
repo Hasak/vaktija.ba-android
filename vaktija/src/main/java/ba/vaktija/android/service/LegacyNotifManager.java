@@ -149,7 +149,7 @@ public class LegacyNotifManager implements NotifManager {
             String silentDeactivationTime = PrayersSchedule.getInstance(context).getSilentModeDurationString();
 
             if(showTicker){
-                mCountdownNotifBuilder.setTicker(FormattingUtils.getVakatAnnouncement(mPrayer.getShortTitle()));
+                mCountdownNotifBuilder.setTicker(FormattingUtils.getVakatAnnouncement(mPrayer.getTitle()));
             }
 
             if(SilentModeManager.getInstance(context).silentSetByApp()) {
@@ -306,10 +306,17 @@ public class LegacyNotifManager implements NotifManager {
     }
 
     private CharSequence getTimeTillNext(int seconds,int secondSeconds){
-
-        String time = Prayer.getNextVakatTitle(mPrayer.getId()) +" za: "+FormattingUtils.getTimeString(seconds);
-        if(mPrefs.getBoolean(Prefs.SECOND_VAKAT_IN_NOTIF, true))
-            time += " · " + Prayer.getNextVakatTitle(mNextPrayer.getId()) + " za: "+FormattingUtils.getTimeString(secondSeconds);
+        String time="";
+        if(mPrefs.getBoolean(Prefs.SHORT_VAKAT_IN_NOTIF, true)){
+            time+= Prayer.getNextShortVakatTitle(mPrayer.getId()) +": "+FormattingUtils.getTimeString(seconds);
+            if(mPrefs.getBoolean(Prefs.SECOND_VAKAT_IN_NOTIF, true))
+                time += " · " + Prayer.getNextShortVakatTitle(mNextPrayer.getId()) + ": "+FormattingUtils.getTimeString(secondSeconds);
+        }
+        else{
+            time+= Prayer.getNextVakatTitle(mPrayer.getId()) +" za: "+FormattingUtils.getTimeString(seconds);
+            if(mPrefs.getBoolean(Prefs.SECOND_VAKAT_IN_NOTIF, true))
+                time += " · " + Prayer.getNextVakatTitle(mNextPrayer.getId()) + " za: "+FormattingUtils.getTimeString(secondSeconds);
+        }
 
         return Utils.boldNumbers(time);
     }

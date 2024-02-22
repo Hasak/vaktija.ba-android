@@ -240,6 +240,33 @@ public class Prayer implements Parcelable {
         return "";
     }
 
+    public static String getNextShortVakatTitle(int currentVakatId) {
+
+        boolean friday = Calendar.getInstance(Locale.getDefault()).get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY;
+        boolean respectJuma = App.prefs.getBoolean(Prefs.SEPARATE_JUMA_SETTINGS, true);
+
+        if (friday && respectJuma && currentVakatId == Prayer.SUNRISE)
+            return "Dž";
+
+        switch (currentVakatId) {
+            case Prayer.FAJR:
+                return "IS";
+            case Prayer.SUNRISE:
+                return "Pd";
+            case Prayer.DHUHR:
+            case Prayer.JUMA:
+                return "Ik";
+            case Prayer.ASR:
+                return "Ak";
+            case Prayer.MAGHRIB:
+                return "Jc";
+            case Prayer.ISHA:
+                return "Zr";
+        }
+
+        return "";
+    }
+
     protected void initCalendar() {
         mCalendar = Calendar.getInstance(TimeZone.getDefault());
 
@@ -405,19 +432,19 @@ public class Prayer implements Parcelable {
     public String getShortTitle() {
         switch (id) {
             case FAJR:
-                return "Zora";
+                return "Zr";
             case SUNRISE:
-                return "Izlazak";
+                return "IS";
             case DHUHR:
-                return "Podne";
+                return "Pd";
             case ASR:
-                return "Ikindija";
+                return "Ik";
             case MAGHRIB:
-                return "Akšam";
+                return "Ak";
             case ISHA:
-                return "Jacija";
+                return "Jc";
             case JUMA:
-                return "Džuma";
+                return "Dž";
         }
 
         return "No title";
