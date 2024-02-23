@@ -8,6 +8,7 @@ public class Prefs {
     public static final String SILENT_BLOCKED_BY_DND_REVOKE = "SILENT_BLOCKED_BY_DND_REVOKE";
     public static final String SECOND_VAKAT_IN_NOTIF = "SECOND_VAKAT_IN_NOTIF";
     public static final String CURRENT_VAKAT_IN_NOTIF = "CURRENT_VAKAT_IN_NOTIF";
+    public static final String SHORT_VAKAT_IN_NOTIF = "SHORT_VAKAT_IN_NOTIF";
     public static String DEFAULT_THEME_COLOR = "#5ebb46";
 
     public static final String STATUSBAR_NOTIFICATION = "statusbarNotification";
