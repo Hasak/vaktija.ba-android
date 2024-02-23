@@ -312,6 +312,10 @@ public class PrayersSchedule {
             return mJuma;
         }
 
+        if (prayerId == Prayer.JUMA) {
+            return mPrayers.get(Prayer.ASR);
+        }
+
         return mPrayers.get(prayerId + 1);
     }
 
